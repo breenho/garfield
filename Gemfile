@@ -53,3 +53,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "bootstrap-sass-rails", "~> 2.2.2.0"
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-linkedin'
