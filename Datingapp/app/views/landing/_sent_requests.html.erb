@@ -1,0 +1,27 @@
+<%if @sent_requests.length>0%>
+	<div class="col-md-4">	    	
+		<h4 class="recent mt-10">SENT REQUESTS</h4>
+		<div class="my-friend-list">
+	    	<div class="row">
+   			<% @sent_requests.each_with_index do |request,counter| %>		  		<%target_user = request.friend%>
+	   			<% unless target_user.nil?%>
+		   			<div class="col-md-12">
+				        <div class="well">
+			                <div class="media">
+			                    <a class="thumbnail pull-left" href="javascript:;">
+			                    	<%=image_tag(target_user.image_path, :class=>"img-responsive", :alt=>"")%>
+			                    </a>
+			                    <div class="media-body">
+			                        <h5 class="media-heading"><a href="<%=view_user_path(target_user)%>"><%=target_user.full_name(true)%>
+									</a></h5>
+			                		<p class="run-text"><%=request.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %I:%M%P.")%>
+			                		</p>			                        
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+	            <%end%>
+            <%end%>
+        </div>		    
+	</div>
+<%end%>

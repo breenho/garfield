@@ -1,0 +1,30 @@
+<%if @user.id==current_user.id%>
+	<li class="cate_head" style="cursor:pointer;">
+		<a href="<%=edit_user_path(current_user)%>" class="btn btn-default btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Edit Profile</a>
+	</li>
+<%elsif @is_friend.nil?%>   	 
+	<li class="cate_head" style="cursor:pointer;" onclick="fnSendFriendRequest(<%=@user.id%>)">
+		Let's Be Friends
+	</li>         
+<%elsif @is_friend.is_accepted%>					
+	<!-- <li class="cate_head start-conversation" style="cursor:pointer;" data-sid="<%=current_user.id%>" data-rip="<%=@user.id%>">Poke</li> -->
+   <li class="cate_head" style="cursor:pointer;">
+
+      <a href="<%=user_messages_path%>?uid=<%= @user.id%>" class="btn btn-xs btn-default">
+         <i class="fa fa-envelope-o" aria-hidden="true"></i> Message
+      </a>      
+   </li>
+   <li class="cate_head">
+   	<button class="btn btn-xs btn-default" onclick="fnUnfriend(<%=@user.id%>)"><i class="fa fa-user-times" aria-hidden="true"></i>&nbsp;Unfriend
+	</button>
+   </li>
+<%elsif @is_friend.is_accepted.nil? and @is_friend.friend_id==current_user.id%>
+	<li class="cate_head" style="cursor:pointer;" onclick="
+	fnUpdateFriendRequestStatus(<%=@is_friend.id%>,1)">Accept</li>   		
+	<li class="cate_head" style="cursor:pointer;" onclick="fnUpdateFriendRequestStatus(<%=@is_friend.id%>,0)">Reject</li>
+<%else%>
+   <li class="cate_head">
+      Request Sent
+   </li>
+<%end%>
+<div class="clearfix"> </div>

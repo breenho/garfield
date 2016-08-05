@@ -1,0 +1,23 @@
+<div class="friends-section">
+	<div class="container">
+		<div class="row">
+				
+		    <%= render :partial => "landing/accepted_friends", :locals =>{:accepted_friends => @accepted_friends, :custom_class => @friends_request.length==0 ? "col-md-12" : "col-md-8", :custom_class1 => @friends_request.length==0 ? "4" : "6", :check_current_profile_id => current_user.id, :dont_check_if_friend => true} %>
+
+
+
+			<%= render :partial => "user_friends/recvd_frnd_requests" %>
+
+
+			
+		</div>
+	</div>
+</div>
+<style>
+p.accept{
+	color: #668014;
+}
+p.reject{
+	color: #EE2C2C;
+}
+</style>

@@ -1,0 +1,20 @@
+<%if user_signed_in?%>
+<div class="footer">
+	<div class="container">
+	    <div class="copy">
+	    	<p>© 2015 - 2016  <a href="<%=privacy_landing_index_path%>" target="_blank">TechAffinity</a>  All Rights Reserved.  <a href="<%=privacy_landing_index_path%>" target="_blank" class="privacy-policies"> Legal and Privacy Policies</a></p>
+		</div>		
+	    <div class='clearfix'> </div>
+	</div>
+</div>
+<% else %>
+<div class="container footer-text">
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="text-right">
+    		©  2015 - 2016  TechAffinity  All Rights Reserved. Legal and Privacy Policies	
+    		</div>
+    	</div>
+    </div>
+</div>
+<% end %>

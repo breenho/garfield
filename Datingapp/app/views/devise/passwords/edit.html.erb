@@ -1,0 +1,35 @@
+<div class="profile_banner">
+  <div class="container"> 
+     <h3>Reset your password</h3>
+  </div>
+</div>
+<div class="content_top">
+  <div class="container">
+    <div class="text-center">
+      <div class="forgot-password-section">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, id: "change_password_form" }) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="field text-left">
+        <div>New Password <label>*</label> <small class="text-muted">(<%= @minimum_password_length %> characters minimum)</small></div>
+        <% if @minimum_password_length %>
+        <% end %>
+        <%= f.password_field :password, class: "form-control", autofocus: true, autocomplete: "off", required: true %>
+      </div>
+
+      <div class="field text-left">
+        <div>Confirm New Password <label>*</label></div>
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off",required: true %>
+      </div>
+
+      <div class="actions">
+        <%= link_to "Change my password", "#", class: "acount-btn", :onclick => "$('#change_password_form').submit()" %>
+      </div>
+    <% end %>
+ </div>
+ </div>
+ </div>
+</div>
+
+<%#= render "users/shared/links" %>

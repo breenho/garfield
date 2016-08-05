@@ -1,0 +1,42 @@
+<div class="profile_banner">
+  <div class="container"> 
+     <h3>Change your password</h3>
+  </div>
+</div>
+<div class="content_top">
+  <div class="container">
+    <div class="text-center">
+      <div class="forgot-password-section">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: "update_password_form" }) do |f| %>
+        <%= devise_error_messages! %>
+       <div class="field text-left">
+          <div>Current Password <label>*</label></div>
+          <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field text-left">
+          <div>New Password </div><!-- <small class="text-muted">(leave blank if you don't want to change it)</small> -->
+          <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+        </div>
+
+        <div class="field text-left">
+          <div>New Password Confirmation</div>
+          <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+        </div>
+        <div class="actions">
+          <%= link_to "Update", "#", class: "acount-btn", :onclick => "$('#update_password_form').submit()" %>
+        </div>
+      <% end %>
+ </div>
+ </div>
+ </div>
+</div>
+<!-- <h3>Cancel my account</h3>
+
+<p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
+
+<%#= link_to "Back", :back %>

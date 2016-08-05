@@ -1,0 +1,120 @@
+
+<div class="friends-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+
+				<div class="profile-view">
+
+					<div class="row">
+						<div class="col-md-4 col-sm-4 col-xs-4">
+							<div class="profile-gallery">
+								<div class="profile-carousel">
+									<%if @user.attachments.length==0%>
+							  			<div>
+										  	<%=image_tag(@user.image_path, :class=>"img-responsive", :alt=>"")%>
+										</div>
+							  		<%else%>
+									  	<%@user.attachments.each do |attachment|%>
+										  <div>
+										  	<%=image_tag(User.attachment_path(attachment.try(:attachment)), :class=>"img-responsive", :alt=>"")%>
+										  </div>
+										<%end%>
+									<%end%>
+								</div>					
+								<div class="favorite-likes">
+									<a href="javascript:;"><%=@profile_likes%></a>
+								</div>		
+							</div>
+							<div class="profile-name">								
+								<h4><%=@user.full_name(@is_friend.try(:is_accepted) || current_user.id==@user.id)%></h4>
+								<p><%=@user.team_name%></p>
+							</div>
+						</div>
+						<div class="col-md-8 col-sm-8 col-xs-8">
+							<div class="profile-details">
+								<h4>About me <%if current_user.id==@user.id%><span><a href="<%=edit_user_path(@user)%>"></a></span><%end%></h4>
+								<p><%=@user.about_me%></p>
+								<hr>
+								<div class="table-responsive table-profile">
+									<table class="table borderless">
+										<tr>
+											<td><b>Gender</b></td>
+											<td><%=@user.gender.name || "-"%></td>
+										</tr>
+										<%if @is_friend.try(:is_accepted) || @user.user_setting.age_with_public%>
+											<tr>
+												<td><b>Age</b></td>
+												<td><%=@user.age || "-"%></td>
+											</tr>
+										<%end%>
+										<tr>
+											<td><b>City</b></td>
+											<td><%=@user.city || "-"%></td>
+										</tr>
+										<tr>
+											<td><b>State</b></td>
+											<td><%=@user.state.try(:name) || "-"%></td>
+										</tr>			
+										<tr>
+											<td><b>Country</b></td>
+											<td><%=@user.country || "-"%></td>
+										</tr>
+										<tr>
+											<td><b>Hobbies</b></td>
+											<td><%=@user.hobbies || "-"%></td>
+										</tr>								
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>				
+			</div>
+			<div class="col-md-4">
+		    	<div class="border-title">
+		    		<%if params[:id].to_i==current_user.id%>			    		
+			    		<h4>My Pokes (<%=UserFriend.total_friends_count(current_user.id)%>)</h4>
+			    	<%else%>
+			    		<span id="span_mutual_friends">MUTUAL FRIENDS</span>
+			    	<%end%>
+		    	</div>
+		    	<div class="request_right">
+		    	<%mutual_friends_count=0%>
+				<% @user_friends.each_with_index do |my_friend,counter| %>	
+					<%target_user = my_friend.user%>
+					<%if params[:id].to_i==current_user.id or @my_friends_id.include? target_user.id%>
+			        	<%mutual_friends_count+=1%>
+				    	
+					    	<div class="single_request">
+					    		<div class="requests-image">
+					    			<img src="images/requests/1.jpg" />
+					    		</div>
+					    		<div class="req-name">
+						    		<a><h4><%=target_user.full_name(true)%></h4></a>
+						    		<a href="<%=message_conversation_user_message_path(current_user)%>?uid=<%= target_user.id%>">	
+										<%=image_tag("/assets/message.png")%>
+									</a>
+					    		</div>
+					    		<div class="request-icons">
+					    			<%unless target_user.team_icon.nil?%>
+					    				<a href="#"><%=image_tag(target_user.team_icon)%></a>
+					    			<%end%>
+					    			<%unless target_user.relationship_interest_icon.nil?%>
+					    				<a href="#"><%=image_tag(target_user.relationship_interest_icon)%></a>
+					    			<%end%>
+					    		</div>					    		
+					    	</div>					    
+					<%end%>
+				<%end%>
+				</div>
+				<%if mutual_friends_count==0%>
+		        	<script>
+		        		$("#span_mutual_friends").hide();
+		        	</script>
+	        	<%end%>
+			</div>
+		</div>
+	</div>
+</div>

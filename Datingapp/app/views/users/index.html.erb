@@ -1,0 +1,32 @@
+<%= render :partial => 'landing/banner' %>
+  <div class="friends-section">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="border-title">
+
+                      <h4>New Pokes (<%=@users.length%>)</h4>  
+                      <%= render :partial => "new_friends" %>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+<script>
+function fnSendFriendRequest(friend_id){  
+  var ajax_data = {
+    "friend_id": friend_id,
+    "list_page": true
+  };
+  $.ajax({
+    url: "<%= add_friend_path %>",
+    format: "json",
+    data: ajax_data,
+    success: function(response){
+      $(".btnRequest_"+friend_id).toggle();      
+    }
+  });
+}
+
+</script>
