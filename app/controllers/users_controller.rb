@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
 	# before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
-	
+
   # GET /users/:id.:format
   def show
     # authorize! :read, @user
@@ -27,12 +27,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+  	p @user
+  	p current_user
+  	p "hello #{current_user.email}"
+  end
+
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
     # authorize! :update, @user 
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
-        # @user.skip_reconfirmation! #Need to enable based on our need
+        @user.skip_reconfirmation! #Need to enable/disable based on our need
         sign_in(@user, :bypass => true)
         redirect_to @user, notice: 'Your profile was successfully updated.'
       else
