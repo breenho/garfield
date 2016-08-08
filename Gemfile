@@ -55,3 +55,4 @@ gem "bootstrap-sass-rails", "~> 2.2.2.0"
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-linkedin'
+gem 'pg'
