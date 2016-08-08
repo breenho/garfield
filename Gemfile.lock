@@ -216,6 +216,7 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql2 (0.3.21)
     naught (1.0.0)
     nenv (0.2.0)
     nokogiri (1.6.6.2)
@@ -346,7 +347,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sqlite3 (1.3.10)
     taps (0.3.24)
       rack (>= 1.0.1)
       rest-client (>= 1.4.0, < 1.7.0)
@@ -408,6 +408,7 @@ DEPENDENCIES
   koala
   launchy
   linkedin
+  mysql2 (~> 0.3.18)
   omniauth
   omniauth-facebook
   omniauth-github
@@ -423,7 +424,6 @@ DEPENDENCIES
   sdoc
   shoulda-matchers
   simple_form
-  sqlite3
   taps
   thin
   turbolinks
@@ -431,4 +431,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.10.6
+   1.12.5
