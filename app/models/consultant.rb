@@ -1,2 +1,0 @@
-class Consultant < ApplicationRecord
-end
