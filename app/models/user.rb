@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   devise :database_authenticatable, :registerable,
-      :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+      :recoverable, :rememberable, :trackable, :confirmable, :validatable, :omniauthable
   validates_presence_of :email
   mount_uploader :image, ImageUploader
   has_many :authorizations

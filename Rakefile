@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-SociaLoginRails::Application.load_tasks
+Garfield::Application.load_tasks
