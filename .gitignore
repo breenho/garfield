@@ -14,3 +14,4 @@ log/searchd.development.pid
 db/sphinx/development/*
 config/social_keys.yml
 .idea/
+Gemfile.lock
